@@ -18,7 +18,7 @@ public class Janela extends JFrame {
 
   protected JLabel statusBar1 = new JLabel("Mensagem:"), statusBar2 = new JLabel("Coordenada:");
 
-  protected boolean esperaPonto, esperaInicioReta, esperaFimReta;
+  protected boolean esperaPonto, esperaInicioReta, esperaFimReta, esperaInicioCirculo, esperaFimCirculo;
 
   protected Color corAtual = Color.BLACK;
   protected Ponto p1;
@@ -102,6 +102,7 @@ public class Janela extends JFrame {
 
     btnPonto.addActionListener(new DesenhoDePonto());
     btnLinha.addActionListener(new DesenhoDeReta());
+    btnCirculo.addActionListener(new DesenhoDeCirculo());
 
     JPanel pnlBotoes = new JPanel();
     FlowLayout flwBotoes = new FlowLayout();
@@ -165,6 +166,17 @@ public class Janela extends JFrame {
         figuras.add(new Linha(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
         figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
         statusBar1.setText("Mensagem:");
+      } else if (esperaInicioCirculo){
+        p1 = new Ponto(e.getX(), e.getY(), corAtual);
+        esperaInicioCirculo = false;
+        esperaFimCirculo = true;
+        statusBar1.setText("Mensagem: clique o ponto final do circulo");
+      } else if (esperaFimCirculo){
+        esperaInicioCirculo = false;
+        esperaFimCirculo = false;
+        figuras.add(new Circulo(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
+        figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        statusBar1.setText("Mensagem:");
       }
     }
 
@@ -193,6 +205,8 @@ public class Janela extends JFrame {
       esperaPonto = true;
       esperaInicioReta = false;
       esperaFimReta = false;
+      esperaInicioCirculo = false;
+      esperaFimCirculo = false;
 
       statusBar1.setText("Mensagem: clique o local do ponto desejado");
     }
@@ -203,8 +217,22 @@ public class Janela extends JFrame {
       esperaPonto = false;
       esperaInicioReta = true;
       esperaFimReta = false;
+      esperaInicioCirculo = false;
+      esperaFimCirculo = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial da reta");
+    }
+  }
+
+  protected class DesenhoDeCirculo implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      esperaPonto = false;
+      esperaInicioReta = false;
+      esperaFimReta = false;
+      esperaInicioCirculo = true;
+      esperaFimCirculo = false;
+
+      statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
   }
 
