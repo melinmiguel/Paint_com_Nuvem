@@ -242,6 +242,8 @@ public class Janela extends JFrame {
       esperaFimCirculo = false;
       esperaInicioElipse = false;
       esperaFimElipse = false;
+      esperaInicioQuadrado = false;
+      esperaFimQuadrado = false;
 
       statusBar1.setText("Mensagem: clique o local do ponto desejado");
     }
@@ -256,6 +258,8 @@ public class Janela extends JFrame {
       esperaFimCirculo = false;
       esperaInicioElipse = false;
       esperaFimElipse = false;
+      esperaInicioQuadrado = false;
+      esperaFimQuadrado = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial da reta");
     }
@@ -270,6 +274,8 @@ public class Janela extends JFrame {
       esperaFimCirculo = false;
       esperaInicioElipse = false;
       esperaFimElipse = false;
+      esperaInicioQuadrado = false;
+      esperaFimQuadrado = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
@@ -284,6 +290,8 @@ public class Janela extends JFrame {
       esperaFimCirculo = false;
       esperaInicioElipse = true;
       esperaFimElipse = false;
+      esperaInicioQuadrado = false;
+      esperaFimQuadrado = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
