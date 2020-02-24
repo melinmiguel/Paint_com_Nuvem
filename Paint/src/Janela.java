@@ -9,16 +9,16 @@ public class Janela extends JFrame {
   protected static final long serialVersionUID = 1L;
 
   protected JButton btnPonto = new JButton("Ponto"), btnLinha = new JButton("Linha"),
-      btnCirculo = new JButton("Circulo"), btnElipse = new JButton("Elipse"), btnCores = new JButton("Cores"),
-      btnAbrir = new JButton("Abrir"), btnSalvar = new JButton("Salvar"), btnApagar = new JButton("Apagar"),
-      btnSair = new JButton("Sair");
+      btnCirculo = new JButton("Circulo"), btnElipse = new JButton("Elipse"), btnQuadrado = new JButton("Quadrado"),
+      btnCores = new JButton("Cores"), btnAbrir = new JButton("Abrir"), btnSalvar = new JButton("Salvar"),
+      btnApagar = new JButton("Apagar"), btnSair = new JButton("Sair");
 
   protected MeuJPanel pnlDesenho = new MeuJPanel();
 
   protected JLabel statusBar1 = new JLabel("Mensagem:"), statusBar2 = new JLabel("Coordenada:");
 
   protected boolean esperaPonto, esperaInicioReta, esperaFimReta, esperaInicioCirculo, esperaFimCirculo,
-      esperaInicioElipse, esperaFimElipse;
+      esperaInicioElipse, esperaFimElipse, esperaInicioQuadrado, esperaFimQuadrado;
 
   protected Color corAtual = Color.BLACK;
   protected Ponto p1;
@@ -100,10 +100,19 @@ public class Janela extends JFrame {
           JOptionPane.WARNING_MESSAGE);
     }
 
+    try {
+      Image btnQuadradoImg = ImageIO.read(getClass().getResource("resources/quadrado.jpg"));
+      btnQuadrado.setIcon(new ImageIcon(btnQuadradoImg));
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, "Arquivo quadrado.png não foi encontrado", "Arquivo de imagem ausente",
+          JOptionPane.WARNING_MESSAGE);
+    }
+
     btnPonto.addActionListener(new DesenhoDePonto());
     btnLinha.addActionListener(new DesenhoDeReta());
     btnCirculo.addActionListener(new DesenhoDeCirculo());
     btnElipse.addActionListener(new DesenhoDeElipse());
+    btnQuadrado.addActionListener(new DesenhoDeQuadrado());
 
     JPanel pnlBotoes = new JPanel();
     FlowLayout flwBotoes = new FlowLayout();
@@ -115,6 +124,7 @@ public class Janela extends JFrame {
     pnlBotoes.add(btnLinha);
     pnlBotoes.add(btnCirculo);
     pnlBotoes.add(btnElipse);
+    pnlBotoes.add(btnQuadrado);
     pnlBotoes.add(btnCores);
     pnlBotoes.add(btnApagar);
     pnlBotoes.add(btnSair);
@@ -183,10 +193,21 @@ public class Janela extends JFrame {
         esperaInicioElipse = false;
         esperaFimElipse = true;
         statusBar1.setText("Mensagem: clique o ponto final da elipse");
-      } else if (esperaFimElipse){
+      } else if (esperaFimElipse) {
         esperaInicioElipse = false;
         esperaFimElipse = false;
         figuras.add(new Elipse(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
+        figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        statusBar1.setText("Mensagem:");
+      } else if (esperaInicioQuadrado) {
+        p1 = new Ponto(e.getX(), e.getY(), corAtual);
+        esperaInicioQuadrado = false;
+        esperaFimQuadrado = true;
+        statusBar1.setText("Mensagem: clique o ponto final da Quadrado");
+      } else if (esperaFimQuadrado) {
+        esperaInicioQuadrado = false;
+        esperaFimQuadrado = false;
+        figuras.add(new Quadrado(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
         figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
         statusBar1.setText("Mensagem:");
       }
@@ -265,6 +286,22 @@ public class Janela extends JFrame {
       esperaFimElipse = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
+    }
+  }
+
+  protected class DesenhoDeQuadrado implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      esperaPonto = false;
+      esperaInicioReta = false;
+      esperaFimReta = false;
+      esperaInicioCirculo = false;
+      esperaFimCirculo = false;
+      esperaInicioElipse = false;
+      esperaFimElipse = false;
+      esperaInicioQuadrado = true;
+      esperaFimQuadrado = false;
+
+      statusBar1.setText("Mensagem: clique o ponto inicial do quadrado");
     }
   }
 
