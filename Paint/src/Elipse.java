@@ -60,7 +60,7 @@ public class Elipse extends Figura {
     int eixoY = calculaEixoY(raioY);
 
     g.setColor(this.cor);
-    g.drawOval(eixoX, eixoY, tamanhoX, tamanhoY);
+    g.fillOval(eixoX, eixoY, tamanhoX, tamanhoY);
   }
 
   public String toString() {

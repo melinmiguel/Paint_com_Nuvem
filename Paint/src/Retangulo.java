@@ -64,7 +64,7 @@ public class Retangulo extends Figura {
     int y = calculaY();
 
     g.setColor(this.cor);
-    g.drawRect(x, y, tamanhoX, tamanhoY);
+    g.fillRect(x, y, tamanhoX, tamanhoY);
   }
 
   private int calculaTamanhoX() {

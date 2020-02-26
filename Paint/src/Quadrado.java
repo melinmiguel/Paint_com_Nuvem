@@ -63,7 +63,7 @@ public class Quadrado extends Figura {
     int y = calculaY();
 
     g.setColor(this.cor);
-    g.drawRect(x, y, tamanho, tamanho);
+    g.fillRect(x, y, tamanho, tamanho);
   }
 
   private int calculaTamanho() {

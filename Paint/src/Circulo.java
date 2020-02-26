@@ -58,7 +58,7 @@ public class Circulo extends Figura {
     int eixoY = calculaEixoY(raio);
 
     g.setColor(this.cor);
-    g.drawOval(eixoX, eixoY, tamanho, tamanho);
+    g.fillOval(eixoX, eixoY, tamanho, tamanho);
   }
 
   public String toString() {
