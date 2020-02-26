@@ -132,6 +132,7 @@ public class Janela extends JFrame {
     btnElipse.addActionListener(new DesenhoDeElipse());
     btnQuadrado.addActionListener(new DesenhoDeQuadrado());
     btnRetangulo.addActionListener(new DesenhoDeRetangulo());
+    btnCores.addActionListener(new MudaCor());
     btnTexto.addActionListener(new DesenhoDeTexto());
 
     JPanel pnlBotoes = new JPanel();
@@ -414,6 +415,12 @@ public class Janela extends JFrame {
       esperaFimTexto = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do texto");
+    }
+  }
+
+  protected class MudaCor implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      corAtual = JColorChooser.showDialog(pnlDesenho, "Palheta de cores", corAtual);
     }
   }
 
