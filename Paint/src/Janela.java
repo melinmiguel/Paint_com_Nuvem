@@ -10,15 +10,16 @@ public class Janela extends JFrame {
 
   protected JButton btnPonto = new JButton("Ponto"), btnLinha = new JButton("Linha"),
       btnCirculo = new JButton("Circulo"), btnElipse = new JButton("Elipse"), btnQuadrado = new JButton("Quadrado"),
-      btnCores = new JButton("Cores"), btnAbrir = new JButton("Abrir"), btnSalvar = new JButton("Salvar"),
-      btnApagar = new JButton("Apagar"), btnSair = new JButton("Sair");
+      btnRetangulo = new JButton("Quadrado"), btnCores = new JButton("Cores"), btnAbrir = new JButton("Abrir"),
+      btnSalvar = new JButton("Salvar"), btnApagar = new JButton("Apagar"), btnSair = new JButton("Sair");
 
   protected MeuJPanel pnlDesenho = new MeuJPanel();
 
   protected JLabel statusBar1 = new JLabel("Mensagem:"), statusBar2 = new JLabel("Coordenada:");
 
   protected boolean esperaPonto, esperaInicioReta, esperaFimReta, esperaInicioCirculo, esperaFimCirculo,
-      esperaInicioElipse, esperaFimElipse, esperaInicioQuadrado, esperaFimQuadrado;
+      esperaInicioElipse, esperaFimElipse, esperaInicioQuadrado, esperaFimQuadrado, esperaInicioRetangulo,
+      esperaFimRetangulo;
 
   protected Color corAtual = Color.BLACK;
   protected Ponto p1;
@@ -108,11 +109,20 @@ public class Janela extends JFrame {
           JOptionPane.WARNING_MESSAGE);
     }
 
+    try {
+      Image btnRetanguloImg = ImageIO.read(getClass().getResource("resources/retangulo.jpg"));
+      btnRetangulo.setIcon(new ImageIcon(btnRetanguloImg));
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, "Arquivo retangulo.png não foi encontrado", "Arquivo de imagem ausente",
+          JOptionPane.WARNING_MESSAGE);
+    }
+
     btnPonto.addActionListener(new DesenhoDePonto());
     btnLinha.addActionListener(new DesenhoDeReta());
     btnCirculo.addActionListener(new DesenhoDeCirculo());
     btnElipse.addActionListener(new DesenhoDeElipse());
     btnQuadrado.addActionListener(new DesenhoDeQuadrado());
+    btnRetangulo.addActionListener(new DesenhoDeRetangulo());
 
     JPanel pnlBotoes = new JPanel();
     FlowLayout flwBotoes = new FlowLayout();
@@ -125,6 +135,7 @@ public class Janela extends JFrame {
     pnlBotoes.add(btnCirculo);
     pnlBotoes.add(btnElipse);
     pnlBotoes.add(btnQuadrado);
+    pnlBotoes.add(btnRetangulo);
     pnlBotoes.add(btnCores);
     pnlBotoes.add(btnApagar);
     pnlBotoes.add(btnSair);
@@ -210,6 +221,17 @@ public class Janela extends JFrame {
         figuras.add(new Quadrado(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
         figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
         statusBar1.setText("Mensagem:");
+      } else if (esperaInicioRetangulo) {
+        p1 = new Ponto(e.getX(), e.getY(), corAtual);
+        esperaInicioRetangulo = false;
+        esperaFimRetangulo = true;
+        statusBar1.setText("Mensagem: clique o ponto final da retangulo");
+      } else if (esperaFimRetangulo) {
+        esperaInicioRetangulo = false;
+        esperaFimRetangulo = false;
+        figuras.add(new Retangulo(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
+        figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        statusBar1.setText("Mensagem:");
       }
     }
 
@@ -244,6 +266,8 @@ public class Janela extends JFrame {
       esperaFimElipse = false;
       esperaInicioQuadrado = false;
       esperaFimQuadrado = false;
+      esperaInicioRetangulo = false;
+      esperaFimRetangulo = false;
 
       statusBar1.setText("Mensagem: clique o local do ponto desejado");
     }
@@ -260,6 +284,8 @@ public class Janela extends JFrame {
       esperaFimElipse = false;
       esperaInicioQuadrado = false;
       esperaFimQuadrado = false;
+      esperaInicioRetangulo = false;
+      esperaFimRetangulo = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial da reta");
     }
@@ -276,6 +302,8 @@ public class Janela extends JFrame {
       esperaFimElipse = false;
       esperaInicioQuadrado = false;
       esperaFimQuadrado = false;
+      esperaInicioRetangulo = false;
+      esperaFimRetangulo = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
@@ -292,6 +320,8 @@ public class Janela extends JFrame {
       esperaFimElipse = false;
       esperaInicioQuadrado = false;
       esperaFimQuadrado = false;
+      esperaInicioRetangulo = false;
+      esperaFimRetangulo = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
@@ -308,8 +338,28 @@ public class Janela extends JFrame {
       esperaFimElipse = false;
       esperaInicioQuadrado = true;
       esperaFimQuadrado = false;
+      esperaInicioRetangulo = false;
+      esperaFimRetangulo = false;
 
       statusBar1.setText("Mensagem: clique o ponto inicial do quadrado");
+    }
+  }
+
+  protected class DesenhoDeRetangulo implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      esperaPonto = false;
+      esperaInicioReta = false;
+      esperaFimReta = false;
+      esperaInicioCirculo = false;
+      esperaFimCirculo = false;
+      esperaInicioElipse = false;
+      esperaFimElipse = false;
+      esperaInicioQuadrado = false;
+      esperaFimQuadrado = false;
+      esperaInicioRetangulo = true;
+      esperaFimRetangulo = false;
+
+      statusBar1.setText("Mensagem: clique o ponto inicial do retangulo");
     }
   }
 
