@@ -420,7 +420,7 @@ public class Janela extends JFrame {
 
   protected class MudaCor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      corAtual = JColorChooser.showDialog(pnlDesenho, "Palheta de cores", corAtual);
+      corAtual = JColorChooser.showDialog(pnlDesenho, "Paleta de cores", corAtual);
     }
   }
 
