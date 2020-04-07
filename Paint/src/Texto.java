@@ -3,16 +3,19 @@ import java.util.*;
 
 public class Texto extends Figura {
   protected Ponto p1, p2;
+  protected String frase;
 
-  public Texto(int x1, int y1, int x2, int y2) {
-    this(x1, y1, x2, y2, Color.BLACK);
-  }
+//  public Texto(int x1, int y1, int x2, int y2, Color corAtual, String TXT) {
+//    this(x1, y1, x2, y2, Color.BLACK, corAtual, String TXT);
+//  }
 
-  public Texto(int x1, int y1, int x2, int y2, Color cor) {
+  public Texto(int x1, int y1, int x2, int y2, Color cor, String textoEscrito) {
     super(cor);
 
     this.p1 = new Ponto(x1, y1, cor);
     this.p2 = new Ponto(x2, y2, cor);
+    this.frase = textoEscrito;
+    
   }
 
   public Texto(String s) {
@@ -57,7 +60,7 @@ public class Texto extends Figura {
   }
 
   public void torneSeVisivel(Graphics g) {
-    String texto = "Teste";
+    String texto = this.frase;
 
     g.setColor(this.cor);
     g.drawString(texto, this.p1.getX(), this.p1.getY());

@@ -4,15 +4,17 @@ import javax.swing.*;
 import javax.imageio.*;
 import java.io.*;
 import java.util.*;
+import java.lang.Object.*;
+
 
 public class Janela extends JFrame {
   protected static final long serialVersionUID = 1L;
 
   protected JButton btnPonto = new JButton("Ponto"), btnLinha = new JButton("Linha"),
       btnCirculo = new JButton("Circulo"), btnElipse = new JButton("Elipse"), btnQuadrado = new JButton("Quadrado"),
-      btnRetangulo = new JButton("Retangulo"), btnTexto = new JButton("Texto"), btnCores = new JButton("Cores"),
+      btnRetangulo = new JButton("Retangulo"), btnTexto = new JButton("Texto"), btnFont = new JButton("Fontes"), btnCores = new JButton("Cores"),
       btnAbrir = new JButton("Abrir"), btnSalvar = new JButton("Salvar"), btnApagar = new JButton("Apagar"),
-      btnSair = new JButton("Sair");
+      btnSair = new JButton("Sair"); 
 
   protected MeuJPanel pnlDesenho = new MeuJPanel();
 
@@ -125,6 +127,14 @@ public class Janela extends JFrame {
       JOptionPane.showMessageDialog(null, "Arquivo texto.png não foi encontrado", "Arquivo de imagem ausente",
           JOptionPane.WARNING_MESSAGE);
     }
+    
+    try {
+      Image btnFonte = ImageIO.read(getClass().getResource("resources/fontes.jpg"));
+      btnFont.setIcon(new ImageIcon(btnFonte));
+    } catch (IOException e) {
+      JOptionPane.showMessageDialog(null, "Arquivo Fonte.png não foi encontrado", "Arquivo de imagem ausente",
+          JOptionPane.WARNING_MESSAGE);
+    }
 
     btnPonto.addActionListener(new DesenhoDePonto());
     btnLinha.addActionListener(new DesenhoDeReta());
@@ -134,6 +144,7 @@ public class Janela extends JFrame {
     btnRetangulo.addActionListener(new DesenhoDeRetangulo());
     btnCores.addActionListener(new MudaCor());
     btnTexto.addActionListener(new DesenhoDeTexto());
+    //btnFont.addActionListener(new AlterarFonte()); //JFontChooser não está no Java.Swing
 
     JPanel pnlBotoes = new JPanel();
     FlowLayout flwBotoes = new FlowLayout();
@@ -148,6 +159,7 @@ public class Janela extends JFrame {
     pnlBotoes.add(btnQuadrado);
     pnlBotoes.add(btnRetangulo);
     pnlBotoes.add(btnTexto);
+    pnlBotoes.add(btnFont);
     pnlBotoes.add(btnCores);
     pnlBotoes.add(btnApagar);
     pnlBotoes.add(btnSair);
@@ -249,13 +261,15 @@ public class Janela extends JFrame {
         esperaInicioTexto = false;
         esperaFimTexto = true;
         statusBar1.setText("Mensagem: digite o texto");
-      } else if (esperaFimTexto) {
+      } else if (esperaFimTexto) { //FOI ALTERADO DAQUI ATÉ vvvvvvvvv
         esperaInicioTexto = false;
         esperaFimTexto = false;
-        figuras.add(new Texto(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual));
+       // JFontChooser fontChooser = new JFontChooser();
+        String a = JOptionPane.showInputDialog("Digite Sua Frase"); //adicionado e modificado o metogo texto para receber o texto.
+        figuras.add(new Texto(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual, a));
         figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
         statusBar1.setText("Mensagem:");
-      }
+      }// AQUI, PODE SUSBSTITUIR DO ARQUIVO ANTIDO ESSA PARTE ^^^^
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -424,9 +438,21 @@ public class Janela extends JFrame {
     }
   }
 
+  
+ /* protected class AlterarFonte implements ActionListener {
+    public JFontChooser(java.awt.Font font){
+      //fontAtual = JFontChooser
+      
+      JlFontChooser fontChooser = new JFontChooser();
+      
+    }
+  }*/ //COMANDO NÃO ESTÁ SENDO EXTRAIDO DO SWING.
+
   protected class FechamentoDeJanela extends WindowAdapter {
     public void windowClosing(WindowEvent e) {
       System.exit(0);
     }
   }
 }
+
+
