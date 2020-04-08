@@ -144,6 +144,9 @@ public class Janela extends JFrame {
     btnRetangulo.addActionListener(new DesenhoDeRetangulo());
     btnCores.addActionListener(new MudaCor());
     btnTexto.addActionListener(new DesenhoDeTexto());
+    btnAbrir.addActionListener(new Abrir());
+    btnSalvar.addActionListener(new Salvar());
+
     //btnFont.addActionListener(new AlterarFonte()); //JFontChooser não está no Java.Swing
 
     JPanel pnlBotoes = new JPanel();
@@ -451,6 +454,24 @@ public class Janela extends JFrame {
   protected class FechamentoDeJanela extends WindowAdapter {
     public void windowClosing(WindowEvent e) {
       System.exit(0);
+    }
+  }
+
+  protected class Abrir implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      JFileChooser fileChooser = new JFileChooser();
+      fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+      int result = fileChooser.showOpenDialog(null);
+      if (result == JFileChooser.APPROVE_OPTION) {
+    File selectedFile = fileChooser.getSelectedFile();
+    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+    }
+    }
+  }
+ 
+  protected class Salvar implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+ 
     }
   }
 }
