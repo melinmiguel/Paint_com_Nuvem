@@ -3,13 +3,15 @@ import java.util.*;
 
 public class Retangulo extends Figura {
   protected Ponto p1, p2;
+  protected Color corBorda;
 
   public Retangulo(int x1, int y1, int x2, int y2) {
-    this(x1, y1, x2, y2, Color.BLACK);
+    this(x1, y1, x2, y2, Color.BLACK, Color.BLACK);
   }
 
-  public Retangulo(int x1, int y1, int x2, int y2, Color cor) {
-    super(cor);
+  public Retangulo(int x1, int y1, int x2, int y2, Color corPreenchimento, Color corBorda) {
+    super(corPreenchimento);
+    this.corBorda = corBorda;
 
     this.p1 = new Ponto(x1, y1, cor);
     this.p2 = new Ponto(x2, y2, cor);
@@ -65,6 +67,9 @@ public class Retangulo extends Figura {
 
     g.setColor(this.cor);
     g.fillRect(x, y, tamanhoX, tamanhoY);
+
+    g.setColor(this.corBorda);
+    g.drawRect(x, y, tamanhoX, tamanhoY);
   }
 
   private int calculaTamanhoX() {
@@ -77,7 +82,7 @@ public class Retangulo extends Figura {
 
     return tamanhoX;
   }
-  
+
   private int calculaTamanhoY() {
     int tamanhoY;
 
