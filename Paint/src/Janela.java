@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.*;
 import java.io.*;
 import java.util.*;
@@ -28,6 +29,8 @@ public class Janela extends JFrame {
   protected Ponto p1;
 
   protected Vector<Figura> figuras = new Vector<Figura>();
+
+  private File salvaArquivo;
 
   public Janela() {
     super("Editor Gráfico");
@@ -461,19 +464,64 @@ public class Janela extends JFrame {
     public void actionPerformed(ActionEvent e) {
       JFileChooser fileChooser = new JFileChooser();
       fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+      FileNameExtensionFilter filter = new FileNameExtensionFilter("Figuras (.fga)", "fga");
+      fileChooser.setFileFilter(filter);
       int result = fileChooser.showOpenDialog(null);
       if (result == JFileChooser.APPROVE_OPTION) {
+      File selectedFile = fileChooser.getSelectedFile();
+      System.out.println(selectedFile.toPath());
+      selectedFile.toString();
+      
+      // StringTokenizer itens = new StringTokenizer(selectedFile.toString(), ",");
+      // int qntItens = itens.countTokens();
+      // for (int i = 0; i<qntItens; i++)
+      // {
+      //   itens.get(itens.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+      //   itens.nextToken();
+      // }
+      //TA DANDO PROBLEMA AQUI, PRECISA REPENSAR COMO FAZER ESSA LÓGICA DE APRESENTAR OS DESENHOS.
+      statusBar1.setText("Mensagem: arquivo selecionado " + selectedFile.getAbsolutePath());
+     }
+    }
+  }
+ 
+ protected class Salvar implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+    JFileChooser fileChooser = new JFileChooser();
+    fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Figuras (.fga)", "fga");
+    fileChooser.setFileFilter(filter);
+    int result = fileChooser.showSaveDialog(null);
+    if (result == JFileChooser.APPROVE_OPTION) {
+    String content = figuras.toString();
     File selectedFile = fileChooser.getSelectedFile();
-    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+    if (selectedFile.exists()){
+      int resposta = JOptionPane.showConfirmDialog(null, "Deseja substituir o arquivo existente?", "title", JOptionPane.YES_NO_OPTION);
+      if (resposta == JOptionPane.YES_OPTION) {
+        try {
+          FileWriter fw = new FileWriter(selectedFile.getPath());
+          fw.write(content);
+          fw.flush();
+          fw.close();
+          statusBar1.setText("Mensagem: arquivo salvo em: " + selectedFile.getAbsolutePath());
+        } catch (Exception e2) {
+          JOptionPane.showMessageDialog(null, e2.getMessage());
+        }
+      } 
+      else { 
+        btnSalvar.addActionListener(new Salvar());
+      }
     }
+    try {
+      FileWriter fw = new FileWriter(selectedFile.getPath());
+      fw.write(content);
+      fw.flush();
+      fw.close();
+      statusBar1.setText("Mensagem: arquivo salvo em: " + selectedFile.getAbsolutePath());
+    } catch (Exception e2) {
+      JOptionPane.showMessageDialog(null, e2.getMessage());
     }
-  }
- 
-  protected class Salvar implements ActionListener {
-    public void actionPerformed(ActionEvent e) {
- 
-    }
-  }
-}
+    
+}}}}
 
 
