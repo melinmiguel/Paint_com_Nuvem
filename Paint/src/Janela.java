@@ -495,7 +495,6 @@ public class Janela extends JFrame {
     if (result == JFileChooser.APPROVE_OPTION) {
     String content = figuras.toString();
     File selectedFile = fileChooser.getSelectedFile();
-    
     if (selectedFile.exists()){
       int resposta = JOptionPane.showConfirmDialog(null, "Deseja substituir o arquivo existente?", "title", JOptionPane.YES_NO_OPTION);
       if (resposta == JOptionPane.YES_OPTION) {
@@ -511,8 +510,18 @@ public class Janela extends JFrame {
       } 
       else { 
         btnSalvar.addActionListener(new Salvar());
-      }}
-}
-}}}
+      }
+    }
+    try {
+      FileWriter fw = new FileWriter(selectedFile.getPath());
+      fw.write(content);
+      fw.flush();
+      fw.close();
+      statusBar1.setText("Mensagem: arquivo salvo em: " + selectedFile.getAbsolutePath());
+    } catch (Exception e2) {
+      JOptionPane.showMessageDialog(null, e2.getMessage());
+    }
+    
+}}}}
 
 
