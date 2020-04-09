@@ -3,13 +3,15 @@ import java.util.*;
 
 public class Circulo extends Figura {
   protected Ponto p1, p2;
+  protected Color corBorda;
 
   public Circulo(int x1, int y1, int x2, int y2) {
-    this(x1, y1, x2, y2, Color.BLACK);
+    this(x1, y1, x2, y2, Color.BLACK, Color.BLACK);
   }
 
-  public Circulo(int x1, int y1, int x2, int y2, Color cor) {
-    super(cor);
+  public Circulo(int x1, int y1, int x2, int y2, Color corPreenchimento, Color corBorda) {
+    super(corPreenchimento);
+    this.corBorda = corBorda;
 
     this.p1 = new Ponto(x1, y1, cor);
     this.p2 = new Ponto(x2, y2, cor);
@@ -59,6 +61,9 @@ public class Circulo extends Figura {
 
     g.setColor(this.cor);
     g.fillOval(eixoX, eixoY, tamanho, tamanho);
+
+    g.setColor(this.corBorda);
+    g.drawOval(eixoX, eixoY, tamanho, tamanho);
   }
 
   public String toString() {
