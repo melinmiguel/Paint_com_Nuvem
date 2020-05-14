@@ -1,21 +1,24 @@
 import java.awt.*;
 import java.util.*;
 
-public class Linha extends Figura {
+public class Texto extends Figura {
   protected Ponto p1, p2;
+  protected String frase;
 
-  public Linha(int x1, int y1, int x2, int y2) {
-    this(x1, y1, x2, y2, Color.BLACK);
-  }
+//  public Texto(int x1, int y1, int x2, int y2, Color corAtual, String TXT) {
+//    this(x1, y1, x2, y2, Color.BLACK, corAtual, String TXT);
+//  }
 
-  public Linha(int x1, int y1, int x2, int y2, Color cor) {
+  public Texto(int x1, int y1, int x2, int y2, Color cor, String textoEscrito) {
     super(cor);
 
     this.p1 = new Ponto(x1, y1, cor);
     this.p2 = new Ponto(x2, y2, cor);
+    this.frase = textoEscrito;
+    
   }
 
-  public Linha(String s) {
+  public Texto(String s) {
     StringTokenizer quebrador = new StringTokenizer(s, ":");
 
     quebrador.nextToken();
@@ -51,14 +54,15 @@ public class Linha extends Figura {
     return this.p2;
   }
 
-  public void torneSeVisivel(Graphics g) {
-    g.setColor(this.cor);
-    g.drawLine(this.p1.getX(), this.p1.getY(), // ponto inicial
-        this.p2.getX(), this.p2.getY()); // ponto final
-  }
-
   public String toString() {
     return "r:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
         + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":" + this.getCor().getBlue();
+  }
+
+  public void torneSeVisivel(Graphics g) {
+    String texto = this.frase;
+
+    g.setColor(this.cor);
+    g.drawString(texto, this.p1.getX(), this.p1.getY());
   }
 }
