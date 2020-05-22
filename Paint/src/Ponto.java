@@ -50,7 +50,7 @@ public class Ponto extends Figura {
   }
 
   public String toString() {
-    return "p:" + this.x + ":" + this.y + ":" + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":"
+    return "ponto:" + this.x + ":" + this.y + ":" + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":"
         + this.getCor().getBlue();
   }
 }

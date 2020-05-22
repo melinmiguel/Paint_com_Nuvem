@@ -13,8 +13,8 @@ public class Circulo extends Figura {
     super(corPreenchimento);
     this.corBorda = corBorda;
 
-    this.p1 = new Ponto(x1, y1, cor);
-    this.p2 = new Ponto(x2, y2, cor);
+    this.p1 = new Ponto(x1, y1, cor); //cordenadas x e y do primeiro local
+    this.p2 = new Ponto(x2, y2, cor); //cordenadas x e y do segundo local
   }
 
   public Circulo(String s) {
@@ -67,7 +67,7 @@ public class Circulo extends Figura {
   }
 
   public String toString() {
-    return "r:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
+    return "circulo:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
         + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":" + this.getCor().getBlue();
   }
 

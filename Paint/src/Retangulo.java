@@ -54,7 +54,7 @@ public class Retangulo extends Figura {
   }
 
   public String toString() {
-    return "r:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
+    return "retangulo:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
         + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":" + this.getCor().getBlue();
   }
 
