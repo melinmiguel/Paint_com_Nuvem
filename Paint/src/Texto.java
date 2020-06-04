@@ -55,7 +55,7 @@ public class Texto extends Figura {
   }
 
   public String toString() {
-    return "texto:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
+    return "texto:" + this.frase + ":" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
         + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":" + this.getCor().getBlue();
   }
 

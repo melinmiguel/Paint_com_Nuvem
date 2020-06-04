@@ -5,7 +5,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Document;
 import javax.imageio.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
+import java.util.List;
 
 public class Janela extends JFrame {
   protected static final long serialVersionUID = 1L;
@@ -487,43 +489,168 @@ public class Janela extends JFrame {
       System.out.println(selectedFile.toPath());
       selectedFile.toString();
       
-      // StringTokenizer itens = new StringTokenizer(selectedFile.toString(), ",");
-      // int qntItens = itens.countTokens();
-      // for (int i = 0; i<qntItens; i++)
-      // {
-      //   itens.get(itens.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
-      //   itens.nextToken();
-      // }
-      //TA DANDO PROBLEMA AQUI, PRECISA REPENSAR COMO FAZER ESSA LÓGICA DE APRESENTAR OS DESENHOS.
-      statusBar1.setText("Mensagem: arquivo selecionado " + selectedFile.getAbsolutePath());
-    
-      
-  //     System.out.println(selectedFile.getAbsolutePath()); //DIRETÓRIO DO ARQUIVO
-  //     System.out.println(selectedFile.getName()); //NOME DO ARQUIVO
-  //     System.out.println(selectedFile.length());
-  //     System.out.println(selectedFile.toURI()); //url par localizar o arquivo
-      
-  //     String endereco = new String();
-  //     endereco = selectedFile.getAbsolutePath();
+      try {
+        FileReader arq = new FileReader(selectedFile.getAbsolutePath());
+        BufferedReader lerArq = new BufferedReader(arq);
+        String linha = lerArq.readLine(); 
 
-  //     // BufferedReader file = new BufferedReader(new FileReader(String )); //como q le arquivo nessa ?! 
-  //     // String  str;
-  //     // while(( str = file.readLine())!=null){
-              
-     
+        StringTokenizer itens = new StringTokenizer(linha, ",");
+        // String array[] = new String[100];
+       String a = new String();
+
+        while (itens.hasMoreTokens()) {
+            String item = itens.nextToken();
+            //array = item.split(",");
+
+          if((item.contains("ponto"))) {
+            String array1[] = new String[3];
+                  array1 = item.split(":");
+                  int x = Integer.parseInt(array1[1]);
+                  int y = Integer.parseInt(array1[2]);
+
+                  String fimProg = array1[5].toString();
+                  //fimProg = fimProg.replace("].fga", "");
+                  
+                  Color cor = new Color(Integer.parseInt(array1[3]), // R
+                  Integer.parseInt(array1[4]), // G
+                  Integer.parseInt(fimProg.replace("].fga", ""))); // B
+                 
+                  figuras.add(new Ponto(x, y, cor));
+                  figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+          }
+
+        if((item.contains("linha"))) {
+          String array1[] = new String[3];
             
-      
+            array1 = item.split(":");
+            int x1 = Integer.parseInt(array1[1]);
+            int y1 = Integer.parseInt(array1[2]);
+            int x2 = Integer.parseInt(array1[3]);
+            int y2 = Integer.parseInt(array1[4]);
 
+            String fimProg = array1[7].toString();
+            //fimProg = fimProg.replace("].fga", "");
+            
+            Color cor = new Color(Integer.parseInt(array1[5]), // R
+            Integer.parseInt(array1[6]), // G
+            Integer.parseInt(fimProg.replace("].fga", ""))); // B
+
+          figuras.add(new Linha(x1, y1, x2, y2, cor));
+          figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        }
+
+
+        if((item.contains("circulo"))) {
+          String array1[] = new String[3];
+            
+            array1 = item.split(":");
+            int x1 = Integer.parseInt(array1[1]);
+            int y1 = Integer.parseInt(array1[2]);
+            int x2 = Integer.parseInt(array1[3]);
+            int y2 = Integer.parseInt(array1[4]);
+
+            String fimProg = array1[7].toString();
+            //fimProg = fimProg.replace("].fga", "");
+            
+            Color cor = new Color(Integer.parseInt(array1[5]), // R
+            Integer.parseInt(array1[6]), // G
+            Integer.parseInt(fimProg.replace("].fga", ""))); // B
+
+            figuras.add(new Circulo(x1, y1, x2, y2, cor, corAtualBorda));
+            figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        }
+
+        if((item.contains("elipse"))) {
+          String array1[] = new String[3];
+            
+            array1 = item.split(":");
+            int x1 = Integer.parseInt(array1[1]);
+            int y1 = Integer.parseInt(array1[2]);
+            int x2 = Integer.parseInt(array1[3]);
+            int y2 = Integer.parseInt(array1[4]);
+
+            String fimProg = array1[7].toString();
+            //fimProg = fimProg.replace("].fga", "");
+            
+            Color cor = new Color(Integer.parseInt(array1[5]), // R
+            Integer.parseInt(array1[6]), // G
+            Integer.parseInt(fimProg.replace("].fga", ""))); // B
+
+            figuras.add(new Elipse(x1, y1, x2, y2, cor, corAtualBorda));
+            figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        }
+
+        if((item.contains("quadrado"))) {
+          String array1[] = new String[3];
+            
+            array1 = item.split(":");
+            int x1 = Integer.parseInt(array1[1]);
+            int y1 = Integer.parseInt(array1[2]);
+            int x2 = Integer.parseInt(array1[3]);
+            int y2 = Integer.parseInt(array1[4]);
+
+            String fimProg = array1[7].toString();
+            //fimProg = fimProg.replace("].fga", "");
+            
+            Color cor = new Color(Integer.parseInt(array1[5]), // R
+            Integer.parseInt(array1[6]), // G
+            Integer.parseInt(fimProg.replace("].fga", ""))); // B
+
+            figuras.add(new Quadrado(x1, y1, x2, y2, cor, corAtualBorda));
+            figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        }
+
+        if((item.contains("retangulo"))) {
+          String array1[] = new String[3];
+            
+            array1 = item.split(":");
+            int x1 = Integer.parseInt(array1[1]);
+            int y1 = Integer.parseInt(array1[2]);
+            int x2 = Integer.parseInt(array1[3]);
+            int y2 = Integer.parseInt(array1[4]);
+
+            String fimProg = array1[7].toString();
+            //fimProg = fimProg.replace("].fga", "");
+            
+            Color cor = new Color(Integer.parseInt(array1[5]), // R
+            Integer.parseInt(array1[6]), // G
+            Integer.parseInt(fimProg.replace("].fga", ""))); // B
+
+            figuras.add(new Retangulo(x1, y1, x2, y2, cor, corAtualBorda));
+            figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        }
+
+        if((item.contains("texto"))) {
+          String array1[] = new String[3];
+          
+            
+            array1 = item.split(":");
+            String frase = array1[1];
+            int x1 = Integer.parseInt(array1[2]);
+            int y1 = Integer.parseInt(array1[3]);
+            int x2 = Integer.parseInt(array1[4]);
+            int y2 = Integer.parseInt(array1[5]);
+            
+            String fimProg = array1[8].toString();
+            //fimProg = fimProg.replace("].fga", "");
+            
+            Color cor = new Color(Integer.parseInt(array1[6]), // R
+            Integer.parseInt(array1[7]), // G
+            Integer.parseInt(fimProg.replace("].fga", ""))); // B
+
+
+        figuras.add(new Texto(x1, y1, x2, y2, cor, frase));
+        figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
+        }
+      }
+        arq.close();
+       }
       
-  //     // StringTokenizer itens = new StringTokenizer(selectedFile.toString(), ",");
-  //     // int qntItens = itens.countTokens();
-  //     // for (int i = 0; i<qntItens; i++)
-  //     // {
-  //     //   itens.get(itens.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
-  //     //   itens.nextToken();
-  //     // }
-  //     //TA DANDO PROBLEMA AQUI, PRECISA REPENSAR COMO FAZER ESSA LÃ“GICA DE APRESENTAR OS DESENHOS.
-  //     statusBar1.setText("Mensagem: arquivo selecionado " + selectedFile.getAbsolutePath());
+      catch (IOException p) {
+          System.err.printf("Erro na abertura do arquivo: %s.\n",
+            p.getMessage());
+      }
+
   statusBar1.setText("Mensagem: arquivo selecionado " + selectedFile.getAbsolutePath());  
       }
     }
