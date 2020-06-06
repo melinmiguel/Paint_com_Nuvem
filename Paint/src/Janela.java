@@ -34,6 +34,13 @@ public class Janela extends JFrame {
 
   private File salvaArquivo;
 
+/**
+  * Cria a janela de desenho.
+  * @return            Janela para desenho
+  * @author            Professor
+
+  */
+
   public Janela() {
     super("Editor Gráfico");
 
@@ -196,11 +203,14 @@ public class Janela extends JFrame {
   }
 
   protected class MeuJPanel extends JPanel implements MouseListener, MouseMotionListener {
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1L;
 
+
+    private static final long serialVersionUID = 1L;
+/**
+  * Cria o Jpanel com a área de desenho do programa.
+  *
+  * @author            Professor
+  */
     public MeuJPanel() {
       super();
 
@@ -208,10 +218,22 @@ public class Janela extends JFrame {
       this.addMouseMotionListener(this);
     }
 
+  /**
+  * Inicializa os Graphics para desenho no Jpanel.
+  *
+  * @author            Professor
+  */
     public void paint(Graphics g) {
       for (int i = 0; i < figuras.size(); i++)
         figuras.get(i).torneSeVisivel(g);
     }
+
+  /**
+  * Aguarda a ininicialização e finalização dos desenhos que serão feitos no Jpanel
+  *
+  * @param             MouseEvent             
+  * @author            Professor
+  */
 
     public void mousePressed(MouseEvent e) {
       if (esperaPonto) {
@@ -278,16 +300,14 @@ public class Janela extends JFrame {
         esperaInicioTexto = false;
         esperaFimTexto = true;
         statusBar1.setText("Mensagem: digite o texto");
-      } else if (esperaFimTexto) { // FOI ALTERADO DAQUI ATÉ vvvvvvvvv
+      } else if (esperaFimTexto) {
         esperaInicioTexto = true;
         esperaFimTexto = false;
-        // JFontChooser fontChooser = new JFontChooser();
-        String a = JOptionPane.showInputDialog("Digite Sua Frase"); // adicionado e modificado o metogo texto para
-                                                                    // receber o texto.
+        String a = JOptionPane.showInputDialog("Digite Sua Frase");
         figuras.add(new Texto(p1.getX(), p1.getY(), e.getX(), e.getY(), corAtual, a));
         figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
         statusBar1.setText("Mensagem:");
-      } // AQUI, PODE SUSBSTITUIR DO ARQUIVO ANTIDO ESSA PARTE ^^^^
+      } 
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -304,12 +324,24 @@ public class Janela extends JFrame {
 
     public void mouseDragged(MouseEvent e) {
     }
-
+  
+  /**
+  * Obersva a movimentação do mouse pelo Jpanel
+  *
+  * @param             MouseEvent             
+  * @author            Professor
+  */
     public void mouseMoved(MouseEvent e) {
       statusBar2.setText("Coordenada: " + e.getX() + "," + e.getY());
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDePonto implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = true;
@@ -329,7 +361,13 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o local do ponto desejado");
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDeReta implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = false;
@@ -349,7 +387,13 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o ponto inicial da reta");
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDeCirculo implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = false;
@@ -369,7 +413,13 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDeElipse implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = false;
@@ -389,7 +439,13 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o ponto inicial do circulo");
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDeQuadrado implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = false;
@@ -409,7 +465,13 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o ponto inicial do quadrado");
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDeRetangulo implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = false;
@@ -429,7 +491,13 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o ponto inicial do retangulo");
     }
   }
-
+  
+  /**
+  * Aceita o primeiro clIque do desenho do e aguarda a finalização.
+  *
+  * @param             ActionEvent             
+  * @author            Professor
+  */
   protected class DesenhoDeTexto implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       esperaPonto = false;
@@ -449,13 +517,29 @@ public class Janela extends JFrame {
       statusBar1.setText("Mensagem: clique o ponto inicial do texto");
     }
   }
-
+  
+  /**
+  * Abre a paleta de cores para mudar a cor interna do desenho.
+  *
+  * @param             ActionEvent             
+  * @author            Rodrigo
+  * @author            Pedro
+  * @author            Leonardo
+  */
   protected class MudaCor implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       corAtual = JColorChooser.showDialog(pnlDesenho, "Paleta de cores - Preenchimento", corAtual);
     }
   }
 
+  /**
+  * Abre a paleta de cores para mudar a cor externa do desenho.
+  *
+  * @param             ActionEvent             
+  * @author            Rodrigo
+  * @author            Pedro
+  * @author            Leonardo
+  */
   protected class MudaCorBorda implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       corAtualBorda = JColorChooser.showDialog(pnlDesenho, "Paleta de cores para - Borda", corAtual);
@@ -470,13 +554,29 @@ public class Janela extends JFrame {
    * 
    * } }
    */ // COMANDO NÃO ESTÁ SENDO EXTRAIDO DO SWING.
-
+ 
+  /**
+  * Realiza o fechamento da janela.
+  *
+  * @param             WindowEvent             
+  * @author            Rodrigo
+  * @author            Pedro
+  * @author            Leonardo
+  */
   protected class FechamentoDeJanela extends WindowAdapter {
     public void windowClosing(WindowEvent e) {
       System.exit(0);
     }
   }
 
+  /**
+  * Realiza o abertura de um arquivo de desenho do tipo .fga
+  *
+  * @param             ActionListener         
+  * @author            Rodrigo
+  * @author            Pedro
+  * @author            Leonardo
+  */
   protected class Abrir implements ActionListener {
      public void actionPerformed(ActionEvent e) {
       JFileChooser fileChooser = new JFileChooser();
@@ -659,7 +759,14 @@ public class Janela extends JFrame {
     }
     }
   
- 
+  /**
+  * Realiza o salvamento de um arquivo de desenho do tipo .fga
+  *
+  * @param             ActionlISTENER             
+  * @author            Rodrigo
+  * @author            Pedro
+  * @author            Leonardo
+  */
  protected class Salvar implements ActionListener {
   public void actionPerformed(ActionEvent e) {
     JFileChooser fileChooser = new JFileChooser();
