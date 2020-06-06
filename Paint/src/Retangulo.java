@@ -1,14 +1,48 @@
 import java.awt.*;
 import java.util.*;
 
+/**
+ * Classe que instâcia e calcula os retangulos, com seu posicionamento e tamanho.
+ * 
+ * 
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
 public class Retangulo extends Figura {
   protected Ponto p1, p2;
   protected Color corBorda;
 
+/**
+ * Construtor do Retangulo, recebendo as coordenadas de entrada.
+ * 
+ * @param x1  valor X do eixo 1
+ * @param y1  valor Y do eixo 1
+ * @param x2  valor X do eixo 2
+ * @param y2  valor Y do eixo 2
+ * 
+ * @author    Leonardo
+ * @author    Rodrigo
+ * @author    Pedro
+ */
   public Retangulo(int x1, int y1, int x2, int y2) {
     this(x1, y1, x2, y2, Color.BLACK, Color.BLACK);
   }
 
+ /**
+ * Construtor do Retangulo, recebendo as coordenadas de entrada.
+ * 
+ * @param x1                valor X do eixo 1
+ * @param y1                valor Y do eixo 1
+ * @param x2                valor X do eixo 2
+ * @param y2                valor Y do eixo 2
+ * @param corPreenchimento  cor do preenchimento
+ * @param corBorda          cor da borda
+ * 
+ * @author                  Leonardo
+ * @author                  Rodrigo
+ * @author                  Pedro
+ */
   public Retangulo(int x1, int y1, int x2, int y2, Color corPreenchimento, Color corBorda) {
     super(corPreenchimento);
     this.corBorda = corBorda;
@@ -37,27 +71,78 @@ public class Retangulo extends Figura {
     this.cor = cor;
   }
 
+/**
+ *Define a coordenada 1.
+ * 
+ * @param x valor X do eixo 1
+ * @param y valor Y do eixo 1
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public void setP1(int x, int y) {
     this.p1 = new Ponto(x, y, this.getCor());
   }
 
+/**
+ *Define a coordenada 2.
+ * 
+ * @param x valor X do eixo 2
+ * @param y valor Y do eixo 2
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public void setP2(int x, int y) {
     this.p2 = new Ponto(x, y, this.getCor());
   }
 
+/**
+ *Retorna a coordenada 1.
+ * 
+ * @return Coordenada 1
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   public Ponto getP1() {
     return this.p1;
   }
 
+/**
+ *retorna a coordenada 2.
+ * 
+ * @return Coordenada 2
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   public Ponto getP2() {
     return this.p2;
   }
 
+/**
+ *Salva um token com as informações do Retangulo.
+ * 
+ * @return String com os dados do Retangulo
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   public String toString() {
     return "retangulo:" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
         + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":" + this.getCor().getBlue();
   }
 
+/**
+ *Torna o retangulo visível no Jpanel.
+ * 
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   public void torneSeVisivel(Graphics g) {
 
     int tamanhoX = calculaTamanhoX();
@@ -72,6 +157,14 @@ public class Retangulo extends Figura {
     g.drawRect(x, y, tamanhoX, tamanhoY);
   }
 
+/**
+ *Calcula o tamanho do angulo X
+ * 
+ * @return tamanho do angulo X
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   private int calculaTamanhoX() {
     int tamanhoX;
 
@@ -83,6 +176,14 @@ public class Retangulo extends Figura {
     return tamanhoX;
   }
 
+/**
+ *Calcula o tamanho do angulo Y
+ * 
+ * @return tamanho do angulo Y
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   private int calculaTamanhoY() {
     int tamanhoY;
 
@@ -94,6 +195,14 @@ public class Retangulo extends Figura {
     return tamanhoY;
   }
 
+/**
+ *Calcula o eixo X
+ * 
+ * @return Eixo X do Retangulo
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   private int calculaX() {
     int x;
     if (this.p1.getX() < this.p2.getX())
@@ -104,6 +213,14 @@ public class Retangulo extends Figura {
     return x;
   }
 
+/**
+ *Calcula o eixo Y
+ * 
+ * @return Eixo X do Retangulo
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   private int calculaY() {
     int y;
     if (this.p1.getY() < this.p2.getY())
