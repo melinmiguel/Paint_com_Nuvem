@@ -490,18 +490,20 @@ public class Janela extends JFrame {
       selectedFile.toString();
       
       try {
+        
         FileReader arq = new FileReader(selectedFile.getAbsolutePath());
         BufferedReader lerArq = new BufferedReader(arq);
         String linha = lerArq.readLine(); 
-
+        
         StringTokenizer itens = new StringTokenizer(linha, ",");
-        // String array[] = new String[100];
-       String a = new String();
+       
+        figuras.clear();
+        pnlDesenho.repaint();
 
         while (itens.hasMoreTokens()) {
             String item = itens.nextToken();
             //array = item.split(",");
-
+          
           if((item.contains("ponto"))) {
             String array1[] = new String[3];
                   array1 = item.split(":");
@@ -643,8 +645,9 @@ public class Janela extends JFrame {
         figuras.get(figuras.size() - 1).torneSeVisivel(pnlDesenho.getGraphics());
         }
       }
-        arq.close();
-       }
+    
+      arq.close();
+      }
       
       catch (IOException p) {
           System.err.printf("Erro na abertura do arquivo: %s.\n",
