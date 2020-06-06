@@ -2,12 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Document;
 import javax.imageio.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.*;
-import java.util.List;
 
 public class Janela extends JFrame {
   protected static final long serialVersionUID = 1L;
@@ -32,15 +29,11 @@ public class Janela extends JFrame {
 
   protected Vector<Figura> figuras = new Vector<Figura>();
 
-  private File salvaArquivo;
-
 /**
   * Cria a janela de desenho.
   * @return            Janela para desenho
   * @author            Professor
-
   */
-
   public Janela() {
     super("Editor Gráfico");
 
@@ -206,7 +199,7 @@ public class Janela extends JFrame {
 
 
     private static final long serialVersionUID = 1L;
-/**
+  /**
   * Cria o Jpanel com a área de desenho do programa.
   *
   * @author            Professor
@@ -231,7 +224,7 @@ public class Janela extends JFrame {
   /**
   * Aguarda a ininicialização e finalização dos desenhos que serão feitos no Jpanel
   *
-  * @param             MouseEvent             
+  * @param MouseEvent  Evento de movimento do mouse             
   * @author            Professor
   */
 
@@ -328,7 +321,7 @@ public class Janela extends JFrame {
   /**
   * Obersva a movimentação do mouse pelo Jpanel
   *
-  * @param             MouseEvent             
+  * @param  MouseEvent Evento de movimento do Mouse             
   * @author            Professor
   */
     public void mouseMoved(MouseEvent e) {
@@ -339,7 +332,7 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da classe          
   * @author            Professor
   */
   protected class DesenhoDePonto implements ActionListener {
@@ -365,7 +358,7 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da classe            
   * @author            Professor
   */
   protected class DesenhoDeReta implements ActionListener {
@@ -391,7 +384,7 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da classe             
   * @author            Professor
   */
   protected class DesenhoDeCirculo implements ActionListener {
@@ -417,7 +410,7 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da classe             
   * @author            Professor
   */
   protected class DesenhoDeElipse implements ActionListener {
@@ -443,7 +436,7 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da Classe             
   * @author            Professor
   */
   protected class DesenhoDeQuadrado implements ActionListener {
@@ -469,8 +462,8 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
-  * @author            Professor
+  * @param  ActionEvent Ação automática da classe             
+  * @author             Professor
   */
   protected class DesenhoDeRetangulo implements ActionListener {
     public void actionPerformed(ActionEvent e) {
@@ -495,8 +488,8 @@ public class Janela extends JFrame {
   /**
   * Aceita o primeiro clIque do desenho do e aguarda a finalização.
   *
-  * @param             ActionEvent             
-  * @author            Professor
+  * @param  ActionEvent Ação automática da classe            
+  * @author             Professor
   */
   protected class DesenhoDeTexto implements ActionListener {
     public void actionPerformed(ActionEvent e) {
@@ -521,7 +514,7 @@ public class Janela extends JFrame {
   /**
   * Abre a paleta de cores para mudar a cor interna do desenho.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da classe             
   * @author            Rodrigo
   * @author            Pedro
   * @author            Leonardo
@@ -535,7 +528,7 @@ public class Janela extends JFrame {
   /**
   * Abre a paleta de cores para mudar a cor externa do desenho.
   *
-  * @param             ActionEvent             
+  * @param ActionEvent Ação automática da classe             
   * @author            Rodrigo
   * @author            Pedro
   * @author            Leonardo
@@ -558,7 +551,7 @@ public class Janela extends JFrame {
   /**
   * Realiza o fechamento da janela.
   *
-  * @param             WindowEvent             
+  * @param WindowEvent Evento automática da classe             
   * @author            Rodrigo
   * @author            Pedro
   * @author            Leonardo
@@ -572,10 +565,10 @@ public class Janela extends JFrame {
   /**
   * Realiza o abertura de um arquivo de desenho do tipo .fga
   *
-  * @param             ActionListener         
-  * @author            Rodrigo
-  * @author            Pedro
-  * @author            Leonardo
+  * @param ActionListener Ação automática da classe        
+  * @author               Rodrigo
+  * @author               Pedro
+  * @author               Leonardo
   */
   protected class Abrir implements ActionListener {
      public void actionPerformed(ActionEvent e) {
@@ -762,10 +755,10 @@ public class Janela extends JFrame {
   /**
   * Realiza o salvamento de um arquivo de desenho do tipo .fga
   *
-  * @param             ActionlISTENER             
-  * @author            Rodrigo
-  * @author            Pedro
-  * @author            Leonardo
+  * @param ActionlISTENER Ação automática da classe            
+  * @author               Rodrigo
+  * @author               Pedro
+  * @author               Leonardo
   */
  protected class Salvar implements ActionListener {
   public void actionPerformed(ActionEvent e) {
