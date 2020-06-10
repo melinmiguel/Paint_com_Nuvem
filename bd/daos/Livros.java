@@ -16,8 +16,8 @@ public class Livros
             String sql;
 
             sql = "SELECT * " +
-                  "FROM bdo.DESENHOS " +
-                  "WHERE IDDESENHOS = ?";
+                  "FROM DBO.Usuarios " +
+                  "WHERE id = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
@@ -65,9 +65,9 @@ public class Livros
             String sql;
 
             sql = "INSERT INTO DBO.USUARIOS " +
-                  "(IDDSENHOS,NOMEDESENHO,DATACRIACAO, DATAMODIFICACAO,DESENHO,USERID) " +
+                  "(Id,Nome) " +
                   "VALUES " +
-                  "(?,?,?,?,?,?)";
+                  "(?,?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 

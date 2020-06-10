@@ -2,15 +2,15 @@ package bd.dbos;
 
 public class Livro implements Cloneable
 {
-    private int    id;
-    private String nome;
+    private int    Id;
+    private String Nome;
  
     public void setCodigo (int id) throws Exception
     {
         if (id <= 0)
             throw new Exception ("id invalido");
 
-        this.id = id;
+        this.Id = Id;
     }   
 
     public void setNome (String nome) throws Exception
@@ -18,32 +18,32 @@ public class Livro implements Cloneable
         if (nome ==null || nome.equals(""))
             throw new Exception ("Nome nao fornecido");
 
-        this.nome = nome;
+        this.Nome = Nome;
     }
    
     public int getCodigo ()
     {
-        return this.id;
+        return this.Id;
     }
 
     public String getNome ()
     {
-        return this.nome;
+        return this.Nome;
     }
 
     
-    public Livro (int id, String nome) throws Exception
+    public Livro (int id, String Nome) throws Exception
     {
-        this.setCodigo (id);
-        this.setNome   (nome);
+        this.setCodigo (Id);
+        this.setNome   (Nome);
        }
 
     public String toString ()
     {
         String ret="";
 
-        ret+="Codigo: "+this.id+"\n";
-        ret+="Nome..: "+this.nome  +"\n";
+        ret+="Codigo: "+this.Id+"\n";
+        ret+="Nome..: "+this.Nome  +"\n";
      
 
         return ret;
@@ -62,10 +62,10 @@ public class Livro implements Cloneable
 
         Livro liv = (Livro)obj;
 
-        if (this.id!=liv.id)
+        if (this.Id!=liv.Id)
             return false;
 
-        if (this.nome.equals(liv.nome))
+        if (this.Nome.equals(liv.Nome))
             return false;
 
     
@@ -76,8 +76,8 @@ public class Livro implements Cloneable
     {
         int ret=666;
 
-        ret = 7*ret + new Integer(this.id).hashCode();
-        ret = 7*ret + this.nome.hashCode();
+        ret = 7*ret + new Integer(this.Id).hashCode();
+        ret = 7*ret + this.Nome.hashCode();
     
         return ret;
     }
