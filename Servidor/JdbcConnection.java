@@ -1,63 +1,63 @@
-package br.com.portaljava.tutoriais.jdbc.connection;
- 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+package bd;
 
-public class JdbcConnection {
- 
-private Connection con = null; 
-private String hostName = null;
-private String userName = null;
-private String password = null;
-private String url = null;
-private String jdbcDriver = null;
-private String dataBaseName = null;
-private String dataBasePrefix = null;
-private String dabaBasePort = null;
+import bd.core.*;
+import bd.daos.*;
 
-public JdbcConnection() {
-  super();
- 
-//"jdbc: mysql:/localhost:3306/projetoC_db"; <-url
-  hostName = "localhost";
-  userName = "admin";
-  password = "admin";    
-  jdbcDriver = "org.gjt.mm.mysql.Driver";
-  dataBaseName = "projetoC_db";
-  dataBasePrefix = "jdbc: mysql:/";
-  dabaBasePort = "3306";
- 
-  url = dataBasePrefix + hostName + ":"+dabaBasePort+"/" + dataBaseName + "/";
- 
- 
-}
+public class BDSQLServer
+{
+    public static final MeuPreparedStatement COMANDO;
 
-//@return con 
- 
-public Connection getConnection() {
-  try {
-    if (con == null) {
-      Class.forName(jdbcDriver);
-      con = DriverManager.getConnection(url, userName, password);
-    } else if (con.isClosed()) {
-      con = null;
-      return getConnection();
+    static
+    {
+    	MeuPreparedStatement comando = null;
+
+    	try
+        {
+            comando =
+            new MeuPreparedStatement (
+            "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+            "jdbc:sqlserver://SERVIDOR:1433;databasename=BD",
+            "USUARIO", "SENHA");
+        }
+        catch (Exception erro)
+        {
+            System.err.println ("Problemas de conexao com o BD");
+            System.exit(0); // aborta o programa
+        }
+        
+        COMANDO = comando;
     }
-  } catch (ClassNotFoundException e) {
-   e.printStackTrace();
-  } catch (SQLException e) {
-  e.printStackTrace();
-  }
-  return con;
 }
+/*{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "gitlens.advanced.messages": {
+        "suppressLineUncommittedWarning": true
+    },
+    "files.exclude": {
+        "**//*.classpath": true,
+        "**///.project": true,
+       // "**/.settings": true,
+      //  "**/.factorypath": true
+    // },
+  /*  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",
+    "java.semanticHighlighting.enabled": true,
+    "mssql.enableQueryHistoryCapture": false,
+    "mssql.connections": [
+        {
+            "server": "projetoc.database.windows.net",
+            "database": "projetoc",
+            "user": "admpedro",
+            "password": "",
+            "authenticationType": "SqlLogin",
+            "emptyPasswordInput": false,
+            "savePassword": true,
+            "connectTimeout": 30,
+            "encrypt": true,
+            "applicationName": "vscode-mssql"
+        }
+    ],
+    "sqltools.connections": [
 
-public void closeConnection() {
-  if (con != null) {
-    try {
-      con.close();
-    } catch (SQLException e) {
-    e.printStackTrace();
-    }
-  }
-}
+    ]
+}*/

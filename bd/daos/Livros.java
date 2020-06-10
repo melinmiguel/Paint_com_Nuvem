@@ -7,7 +7,7 @@ import bd.dbos.*;
 
 public class Livros
 {
-    public static boolean cadastrado (int codigo) throws Exception
+    public static boolean cadastrado (int Id) throws Exception
     {
         boolean retorno = false;
 
@@ -16,12 +16,12 @@ public class Livros
             String sql;
 
             sql = "SELECT * " +
-                  "FROM LIVROS " +
-                  "WHERE CODIGO = ?";
+                  "FROM bdo.DESENHOS " +
+                  "WHERE IDDESENHOS = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setInt (1, codigo);
+            BDSQLServer.COMANDO.setInt (1, Id);
 
             MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
 
@@ -64,16 +64,15 @@ public class Livros
         {
             String sql;
 
-            sql = "INSERT INTO LIVROS " +
-                  "(CODIGO,NOME,PRECO) " +
+            sql = "INSERT INTO DBO.USUARIOS " +
+                  "(IDDSENHOS,NOMEDESENHO,DATACRIACAO, DATAMODIFICACAO,DESENHO,USERID) " +
                   "VALUES " +
-                  "(?,?,?)";
+                  "(?,?,?,?,?,?)";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
             BDSQLServer.COMANDO.setInt    (1, livro.getCodigo ());
             BDSQLServer.COMANDO.setString (2, livro.getNome ());
-            BDSQLServer.COMANDO.setFloat  (3, livro.getPreco ());
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();
@@ -81,25 +80,25 @@ public class Livros
         catch (SQLException erro)
         {
 			BDSQLServer.COMANDO.rollback();
-            throw new Exception ("Erro ao inserir livro");
+            throw new Exception ("Erro ao inserir desenho");
         }
     }
 
-    public static void excluir (int codigo) throws Exception
+    public static void excluir (int Id) throws Exception
     {
-        if (!cadastrado (codigo))
+        if (!cadastrado (Id))
             throw new Exception ("Nao cadastrado");
 
         try
         {
             String sql;
 
-            sql = "DELETE FROM LIVROS " +
-                  "WHERE CODIGO=?";
+            sql = "DELETE FROM DBO.USUARIOS " +
+                  "WHERE Id=?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setInt (1, codigo);
+            BDSQLServer.COMANDO.setInt (1, Id);
 
             BDSQLServer.COMANDO.executeUpdate ();
             BDSQLServer.COMANDO.commit        ();        }
@@ -122,15 +121,13 @@ public class Livros
         {
             String sql;
 
-            sql = "UPDATE LIVROS " +
-                  "SET NOME=? " +
-                  "SET PRECO=? " +
-                  "WHERE CODIGO = ?";
+            sql = "UPDATE DBO.USUARIOS " +
+                 "SET NOME=? " +
+                  "WHERE ID = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
             BDSQLServer.COMANDO.setString (1, livro.getNome ());
-            BDSQLServer.COMANDO.setFloat  (2, livro.getPreco ());
             BDSQLServer.COMANDO.setInt    (3, livro.getCodigo ());
 
             BDSQLServer.COMANDO.executeUpdate ();
@@ -143,7 +140,7 @@ public class Livros
         }
     }
 
-    public static Livro getLivro (int codigo) throws Exception
+    public static Livro getLivro (int Id) throws Exception
     {
         Livro livro = null;
 
@@ -152,12 +149,12 @@ public class Livros
             String sql;
 
             sql = "SELECT * " +
-                  "FROM LIVROS " +
-                  "WHERE CODIGO = ?";
+                  "FROM DBO.USUARIOS " +
+                  "WHERE Id = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
-            BDSQLServer.COMANDO.setInt (1, codigo);
+            BDSQLServer.COMANDO.setInt (1, Id);
 
             MeuResultSet resultado = (MeuResultSet)BDSQLServer.COMANDO.executeQuery ();
 
@@ -165,8 +162,7 @@ public class Livros
                 throw new Exception ("Nao cadastrado");
 
             livro = new Livro (resultado.getInt   ("CODIGO"),
-                               resultado.getString("NOME"),
-                               resultado.getFloat ("PRECO"));
+                               resultado.getString("NOME"));
         }
         catch (SQLException erro)
         {
@@ -185,7 +181,7 @@ public class Livros
             String sql;
 
             sql = "SELECT * " +
-                  "FROM LIVROS";
+                  "FROM DBO.USUARIOS";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
