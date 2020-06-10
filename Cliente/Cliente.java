@@ -60,6 +60,70 @@ public class Cliente {
 
 		tratadoraDeComunicadoDeDesligamento.start();
 
-		new JanelaCliente(servidor);
+		char opcao = ' ';
+		do {
+			System.out.print("Pegar [D]senhos, [S]alvar desenho, [T]erminar): ");
+
+			try {
+				opcao = Character.toUpperCase(Teclado.getUmChar());
+			} catch (Exception erro) {
+				System.err.println("Opcao invalida!\n");
+				continue;
+			}
+
+			if ("DST".indexOf(opcao) == -1) {
+				System.err.println("Opcao invalida!\n");
+				continue;
+			}
+
+			try {
+				switch (opcao) {
+					case 'D':
+						servidor.receba (new PedidoDesenhos(192));
+						Comunicado comunicado = null;
+						do
+						{
+							comunicado = (Comunicado)servidor.espie ();
+						}
+						while (!(comunicado instanceof Desenhos));
+						Desenhos desenhos = (Desenhos)servidor.envie ();
+						System.out.println ("Recebi os desenhos");
+						break;
+						
+						case 'S':
+						double idClient = 192;
+						Desenho desenho = new Desenho("bandeira", "hoje", "hoje");
+
+						servidor.receba (new PedidoSalvamento (idClient));
+						System.out.println ("instância com idClient");
+						
+						servidor.receba (new PedidoSalvamento ());
+						System.out.println ("instância");
+						
+						servidor.receba (new PedidoSalvamento (desenho));
+						System.out.println ("instância com desenho");
+
+						servidor.receba (new PedidoSalvamento (idClient, desenho));
+						System.out.println ("instância com idClient e desenho");
+						break;
+
+					default:
+						break;
+				}
+			} catch (Exception erro) {
+				System.err.println("Erro de comunicacao com o servidor;");
+				System.err.println("Tente novamente!");
+				System.err.println("Caso o erro persista, termine o programa");
+				System.err.println("e volte a tentar mais tarde!\n");
+			}
+		} while (opcao != 'T');
+
+		try {
+			servidor.receba(new PedidoParaSair());
+		} catch (Exception erro) {
+		}
+
+		System.out.println("Obrigado por usar este programa!");
+		System.exit(0);
 	}
 }
