@@ -1,7 +1,16 @@
 import java.net.*;
 import java.io.*;
 
+
+	/**
+	 * Construtor do Client, classe que vai realizar a comunicação e inicizaliação da aplicação com o servidor.
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
 public class Cliente {
+
 	public static final String HOST_PADRAO = "localhost";
 	public static final int PORTA_PADRAO = 3000;
 
