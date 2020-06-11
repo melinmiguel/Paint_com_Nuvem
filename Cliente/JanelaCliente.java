@@ -588,6 +588,9 @@ public class JanelaCliente extends JFrame {
   */
   protected class Abrir implements ActionListener {
     public void actionPerformed(ActionEvent e) {
+      figuras.clear();
+      pnlDesenho.repaint();
+      pnlDesenho.setSize(pnlDesenho.getSize());
       JFileChooser fileChooser = new JFileChooser();
       fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
       FileNameExtensionFilter filter = new FileNameExtensionFilter("Figuras (.fga)", "fga");
@@ -771,6 +774,9 @@ public class JanelaCliente extends JFrame {
   */
   protected class Salvar implements ActionListener {
     public void actionPerformed(ActionEvent e) {
+      figuras.clear();
+      pnlDesenho.repaint();
+      pnlDesenho.setSize(pnlDesenho.getSize());
       JFileChooser fileChooser = new JFileChooser();
       fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
       FileNameExtensionFilter filter = new FileNameExtensionFilter("Figuras (.fga)", "fga");
@@ -909,6 +915,11 @@ public class JanelaCliente extends JFrame {
     }
 
     public void desenharNaTela(String string) {
+      figuras.clear();
+      pnlDesenho.repaint();
+      pnlDesenho.setSize(pnlDesenho.getSize());
+
+
       // limpar MeuJpanel figuras
       StringTokenizer itens = new StringTokenizer(string, ",");
 
@@ -1070,6 +1081,9 @@ public class JanelaCliente extends JFrame {
       this.servidor = servidor;
     }
     public void actionPerformed(ActionEvent e) {
+      figuras.clear();
+      pnlDesenho.repaint();
+      pnlDesenho.setSize(pnlDesenho.getSize());
       Desenho desenho = new Desenho("nome", "hoje", "null", figuras.toString());
 
       try {
