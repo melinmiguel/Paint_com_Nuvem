@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "driver": "MSSQL",
+            "group": "projetoc.database.windows.net",
+            "name": "projetoc.database.windows.net",
+            "previewLimit": 50
+        },
+        {
+            "driver": "MSSQL",
+            "group": "projetoc",
+            "name": "projetoc.database.windows.net",
+            "previewLimit": 50
+        }
+    ]
+}
