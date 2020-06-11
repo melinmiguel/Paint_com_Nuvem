@@ -27,13 +27,13 @@ public class Desenhos {
     }
   }
 
-  public void deletar(String nomeDesenho) throws Exception {
+  public void deletar(String nome) throws Exception {
     try {
       String query = "delete from desenho where nome = ?";
 
       BDSQLServer.COMANDO.prepareStatement(query);
 
-      BDSQLServer.COMANDO.setString(1, nomeDesenho);
+      BDSQLServer.COMANDO.setString(1, nome);
 
       BDSQLServer.COMANDO.executeUpdate();
       BDSQLServer.COMANDO.commit();
@@ -61,7 +61,7 @@ public class Desenhos {
     }
   }
 
-  public Desenho selecionar(String nomeDesenho) throws Exception {
+  public Desenho selecionar(String nome) throws Exception {
     Desenho desenho = null;
 
     try {
@@ -69,7 +69,7 @@ public class Desenhos {
 
       BDSQLServer.COMANDO.prepareStatement(query);
 
-      BDSQLServer.COMANDO.setString(1, nomeDesenho);
+      BDSQLServer.COMANDO.setString(1, nome);
 
       MeuResultSet resultado = (MeuResultSet) BDSQLServer.COMANDO.executeQuery();
 
@@ -111,13 +111,13 @@ public class Desenhos {
     return desenhos;
   }
 
-  public boolean cadastrado(String nomeDesenho) throws Exception {
+  public boolean cadastrado(String nome) throws Exception {
     try {
       String query = "select * from desenho where nome = ?";
 
       BDSQLServer.COMANDO.prepareStatement(query);
 
-      BDSQLServer.COMANDO.setString(1, nomeDesenho);
+      BDSQLServer.COMANDO.setString(1, nome);
 
       MeuResultSet resultado = (MeuResultSet) BDSQLServer.COMANDO.executeQuery();
 
