@@ -20,11 +20,11 @@ public JdbcConnection() {
   super();
  
 //"jdbc: mysql:/localhost:3306/projetoC_db"; <-url
-  hostName = "localhost";
-  userName = "admin";
-  password = "admin";    
+  hostName = "projetoc.database.windows.net";
+  userName = "admpedro";
+  password = "@Pedroa1959442a";    
   jdbcDriver = "org.gjt.mm.mysql.Driver";
-  dataBaseName = "projetoC_db";
+  dataBaseName = "projetoc";
   dataBasePrefix = "jdbc: mysql:/";
   dabaBasePort = "3306";
  
@@ -60,4 +60,4 @@ public void closeConnection() {
     e.printStackTrace();
     }
   }
-}
+}}
