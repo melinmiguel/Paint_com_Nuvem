@@ -5,12 +5,21 @@ public class Desenho {
   private String dataCriacao;
   private String dataUltimaAtualizacao;
   private ArrayList<String> conteudo;
+  private String conteudoString;
 
   public Desenho(String nom, String dtCri, String dtUltAtu) {
     nome = nom;
     dataCriacao = dtCri;
     dataUltimaAtualizacao = dtUltAtu;
     conteudo = new ArrayList<String>();
+    conteudo = new ArrayList<String>();
+  }
+
+  public Desenho(String nom, String dtCri, String dtUltAtu, String conteudoString) {
+    this.nome = nom;
+    this.dataCriacao = dtCri;
+    this.dataUltimaAtualizacao = dtUltAtu;
+    this.conteudoString = conteudoString;
   }
 
   // fig vai ter como forma o retorno do metodo toString de alguma das classes
