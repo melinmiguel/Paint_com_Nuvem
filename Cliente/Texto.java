@@ -1,14 +1,33 @@
 import java.awt.*;
 import java.util.*;
 
+
+/**
+ * Realiza a execução de textos no painel de desenho.
+ * 
+ * 
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
 public class Texto extends Figura {
   protected Ponto p1, p2;
   protected String frase;
 
-//  public Texto(int x1, int y1, int x2, int y2, Color corAtual, String TXT) {
-//    this(x1, y1, x2, y2, Color.BLACK, corAtual, String TXT);
-//  }
-
+/**
+ * Construtor do Texto, recebendo as coordenadas de entrada, cor e texto.
+ * 
+ * @param x1            valor X 
+ * @param y1            valor Y 
+ * @param x2            valor X 
+ * @param y2            valor Y 
+ * @param cor           Cor das letras
+ * @param textoEscrito  String que deverá ser desenhada.
+ * 
+ * @author              Leonardo
+ * @author              Rodrigo
+ * @author              Pedro
+ */
   public Texto(int x1, int y1, int x2, int y2, Color cor, String textoEscrito) {
     super(cor);
 
@@ -38,27 +57,77 @@ public class Texto extends Figura {
     this.cor = cor;
   }
 
+/**
+ *Define o eixo X da cordenada.
+ * 
+ * @param x Valor X
+ * @param y Valor Y
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public void setP1(int x, int y) {
     this.p1 = new Ponto(x, y, this.getCor());
   }
 
+/**
+ *Define o eixo Y da cordenada.
+ * 
+ * @param y Valor Y
+ * @param x Valor X
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public void setP2(int x, int y) {
     this.p2 = new Ponto(x, y, this.getCor());
   }
 
+/**
+ *Retorna o eixo X da cordenada.
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public Ponto getP1() {
     return this.p1;
   }
 
+/**
+ *Retorna o eixo Y da cordenada.
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public Ponto getP2() {
     return this.p2;
   }
 
+  
+/**
+ *Salva um token com as informações do Texto.
+ * 
+ * @return String com os dados do texto
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   public String toString() {
     return "texto:" + this.frase + ":" + this.p1.getX() + ":" + this.p1.getY() + ":" + this.p2.getX() + ":" + this.p2.getY() + ":"
         + this.getCor().getRed() + ":" + this.getCor().getGreen() + ":" + this.getCor().getBlue();
   }
 
+/**
+ *Torna o Texto visível no Jpanel.
+ * 
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
   public void torneSeVisivel(Graphics g) {
     String texto = this.frase;
 
