@@ -1,13 +1,30 @@
 import java.net.*;
 import java.util.*;
 
+	/**
+	 * Aceita a conexão do cliente criando uma Thread
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
+
 public class AceitadoraDeConexao extends Thread
 {
     private static final int PORTA_PADRAO = 3000;
 
     private ServerSocket        pedido;
     private ArrayList<Parceiro> usuarios;
-
+    
+    /**
+	 * Construtora da conexão do cliente criando uma Thread
+	 * 
+     * @param escolha numero do cliente
+     * @param usuarios array list de usuários
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
     public AceitadoraDeConexao
     (String escolha, ArrayList<Parceiro> usuarios)
     throws Exception
@@ -33,6 +50,13 @@ public class AceitadoraDeConexao extends Thread
         this.usuarios = usuarios;
     }
 
+    /**
+	 * Inicia a classe, deixando-a rodando com as conexões ativas.
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
     public void run ()
     {
         for(;;)

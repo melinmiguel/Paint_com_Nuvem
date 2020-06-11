@@ -1,5 +1,12 @@
 import java.util.*;
 
+    /**
+	 * Classe principal de inicialização do servidor.
+	 * 
+	 * @author     Leonardo
+	 * @author     Rodrigo
+	 * @author     Pedro
+	 */
 public class Servidor {
     public static String PORTA_PADRAO = "3000";
 

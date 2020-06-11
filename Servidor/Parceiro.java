@@ -32,6 +32,14 @@ public class Parceiro
         this.transmissor = transmissor;
     }
 
+    /**
+	 * Recebe uma solicitação do parceiro
+	 * 
+     * @param x   solicitação do parceiro
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
     public void receba (Comunicado x) throws Exception
     {
         try
@@ -45,6 +53,13 @@ public class Parceiro
         }
     }
 
+    /**
+	 * Monitora a comunicação entre o servidor e o parceiro
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
     public Comunicado espie () throws Exception
     {
         try
@@ -60,6 +75,14 @@ public class Parceiro
         }
     }
 
+/**
+	 * Envia uma solicitação do parceiro
+	 * 
+     * @return ret solicitação para o parceiro
+	 * @author     Leonardo
+	 * @author     Rodrigo
+	 * @author     Pedro
+	 */
     public Comunicado envie () throws Exception
     {
         try
@@ -75,6 +98,13 @@ public class Parceiro
         }
     }
 
+    /**
+	 * Desconecta o client do servidor
+	 * 
+	 * @author     Leonardo
+	 * @author     Rodrigo
+	 * @author     Pedro
+	 */
     public void adeus () throws Exception
     {
         try

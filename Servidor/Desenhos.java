@@ -6,6 +6,15 @@ import src.conexao.Desenho;
 
 public class Desenhos {
 
+
+/**
+	 * construtod da classe desenho
+	 * 
+   * @param dataUltimaAtualizacao data de atualização da figura
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
   public void criar(Desenho desenho) throws Exception {
     if (desenho == null)
       throw new Exception("Desenho nao fornecido");

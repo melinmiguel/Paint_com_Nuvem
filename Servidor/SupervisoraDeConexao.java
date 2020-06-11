@@ -8,6 +8,15 @@ public class SupervisoraDeConexao extends Thread {
     private Socket conexao;
     private ArrayList<Parceiro> usuarios;
 
+    /**
+	 * Monitora o status da conexão.
+	 * 
+     * @param conexao   conexão solicitada
+     * @param usuarios  usuários conectados
+	 * @author     Leonardo
+	 * @author     Rodrigo
+	 * @author     Pedro
+	 */
     public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios) throws Exception {
         if (conexao == null)
             throw new Exception("Conexao ausente");
@@ -19,6 +28,13 @@ public class SupervisoraDeConexao extends Thread {
         this.usuarios = usuarios;
     }
 
+/**
+	 * Inicializa o transmissor
+	 * 
+	 * @author     Leonardo
+	 * @author     Rodrigo
+	 * @author     Pedro
+	 */
     public void run() {
 
         ObjectOutputStream transmissor;
