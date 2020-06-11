@@ -1,6 +1,13 @@
 import java.io.*;
 import java.net.*;
-import java.util.*; 
+import java.util.*;
+  /**
+  * Inicialização do servidor
+  *
+  * @author           Rodrigo
+  * @author           Pedro
+  * @author           Leonardo
+  */ 
 public class Servidor {
     public static void main(String args[]) throws Exception {
         String clientSentence;

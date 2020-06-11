@@ -6,6 +6,13 @@ import javax.imageio.*;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Programa de inicialização e execução da janela.
+ * 
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
 public class Janela extends JFrame {
   protected static final long serialVersionUID = 1L;
 

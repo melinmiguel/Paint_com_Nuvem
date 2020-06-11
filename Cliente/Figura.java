@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * Figura desenhada com seus atributos
+ * 
+ * @author Leonardo
+ * @author Rodrigo
+ * @author Pedro
+ */
 public abstract class Figura {
   protected Color cor;
 
