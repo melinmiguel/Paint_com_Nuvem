@@ -3,6 +3,13 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
 
+/**
+  * Cria a conexão entre o client e o servidor.
+  *
+  * @author               Rodrigo
+  * @author               Pedro
+  * @author               Leonardo
+  */
 public class Parceiro {
     private Socket conexao;
     private ObjectInputStream receptor;
@@ -11,7 +18,16 @@ public class Parceiro {
     private Comunicado proximoComunicado = null;
 
     private Semaphore mutEx = new Semaphore(1, true);
-
+  /**
+  * Construtor do objeto Parceiro, o qual fara a realização da conexão.
+  *
+  * @param conexao      Socket de conexão do servidor
+  * @param receptor     objectImput de transmissão
+  * @param transmissor  objectImput de recebimento
+  * @author             Rodrigo
+  * @author             Pedro
+  * @author             Leonardo
+  */
     public Parceiro(Socket conexao, ObjectInputStream receptor, ObjectOutputStream transmissor) throws Exception // se
                                                                                                                  // parametro
                                                                                                                  // nulos
@@ -30,6 +46,14 @@ public class Parceiro {
         this.transmissor = transmissor;
     }
 
+/**
+  * Construtor do objeto Parceiro, o qual fara a realização da conexão.
+  *
+  * @param  x Objeto comunicado
+  * @author   Rodrigo
+  * @author   Pedro
+  * @author   Leonardo
+  */
     public void receba(Comunicado x) throws Exception {
         try {
             this.transmissor.writeObject(x);
@@ -39,6 +63,13 @@ public class Parceiro {
         }
     }
 
+  /**
+  * Monitora o status da conexão entre client e servidor
+  *
+  * @author             Rodrigo
+  * @author             Pedro
+  * @author             Leonardo
+  */
     public Comunicado espie() throws Exception {
         try {
             this.mutEx.acquireUninterruptibly();
@@ -51,6 +82,13 @@ public class Parceiro {
         }
     }
 
+/**
+  * realiza a transmissão para o receptor
+  *
+  * @author             Rodrigo
+  * @author             Pedro
+  * @author             Leonardo
+  */
     public Comunicado envie() throws Exception {
         try {
             if (this.proximoComunicado == null)
@@ -63,6 +101,13 @@ public class Parceiro {
         }
     }
 
+/**
+  * Desconecta o client do servidor.
+  *
+  * @author             Rodrigo
+  * @author             Pedro
+  * @author             Leonardo
+  */
     public void adeus() throws Exception {
         try {
             this.transmissor.close();
