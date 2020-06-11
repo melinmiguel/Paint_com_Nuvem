@@ -1,63 +1,35 @@
-package br.com.portaljava.tutoriais.jdbc.connection;
- 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+package bd;
 
-public class JdbcConnection {
- 
-private Connection con = null; 
-private String hostName = null;
-private String userName = null;
-private String password = null;
-private String url = null;
-private String jdbcDriver = null;
-private String dataBaseName = null;
-private String dataBasePrefix = null;
-private String dabaBasePort = null;
+ import bd.core.*;
+ import bd.daos.*;
+
 
 public JdbcConnection() {
   super();
  
-//"jdbc: mysql:/localhost:3306/projetoC_db"; <-url
-  hostName = "projetoc.database.windows.net";
-  userName = "admpedro";
-  password = "@Pedroa1959442a";    
-  jdbcDriver = "org.gjt.mm.mysql.Driver";
-  dataBaseName = "projetoc";
-  dataBasePrefix = "jdbc: mysql:/";
-  dabaBasePort = "3306";
- 
-  url = dataBasePrefix + hostName + ":"+dabaBasePort+"/" + dataBaseName + "/";
- 
- 
-}
 
-//@return con 
- 
-public Connection getConnection() {
-  try {
-    if (con == null) {
-      Class.forName(jdbcDriver);
-      con = DriverManager.getConnection(url, userName, password);
-    } else if (con.isClosed()) {
-      con = null;
-      return getConnection();
-    }
-  } catch (ClassNotFoundException e) {
-   e.printStackTrace();
-  } catch (SQLException e) {
-  e.printStackTrace();
-  }
-  return con;
-}
+ public class BDSQLServer
+ {
+     public static final MeuPreparedStatement COMANDO;
+     static
+    {
+   	MeuPreparedStatement comando = null;
 
-public void closeConnection() {
-  if (con != null) {
-    try {
-      con.close();
-    } catch (SQLException e) {
-    e.printStackTrace();
-    }
-  }
-}}
+     	try
+         {
+             comando =
+             new MeuPreparedStatement (
+             "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+             "jdbc:sqlserver://SERVIDOR:1433;databasename=BD",
+            "USUARIO", "SENHA");
+         }
+         catch (Exception erro)
+         {
+             System.err.println ("Problemas de conexao com o BD");
+             System.exit(0); // aborta o programa
+         }
+        
+         COMANDO = comando;
+     }
+ }
+}
