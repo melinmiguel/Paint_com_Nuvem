@@ -57,10 +57,30 @@ public class Texto extends Figura {
     this.cor = cor;
   }
 
+/**
+ *Define o eixo X da cordenada.
+ * 
+ * @param x Valor X
+ * @param y Valor Y
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public void setP1(int x, int y) {
     this.p1 = new Ponto(x, y, this.getCor());
   }
 
+/**
+ *Define o eixo Y da cordenada.
+ * 
+ * @param y Valor Y
+ * @param x Valor X
+ * 
+ * @author  Leonardo
+ * @author  Rodrigo
+ * @author  Pedro
+ */
   public void setP2(int x, int y) {
     this.p2 = new Ponto(x, y, this.getCor());
   }
