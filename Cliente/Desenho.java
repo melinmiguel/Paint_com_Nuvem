@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 	/**
-	 * Construtor do objeto desenho, objeto que vai armazenar os dados dos desenhos.
+	 * Objeto desenho, objeto que vai armazenar os dados dos desenhos.
 	 * 
 	 * @author    Leonardo
 	 * @author    Rodrigo
@@ -97,18 +97,47 @@ public class Desenho {
     return this.dataCriacao;
   }
 
+  /**
+	 *Retorna a data de atualização do projeto
+	 * 
+   * @return    Data de atualização.
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
   public String getDataUltimaAtualizacao() {
     return this.dataUltimaAtualizacao;
   }
 
+  /**
+	 *Define o nome do desenho
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
   public void setNome(String nome) {
     this.nome = nome;
   }
 
+  /**
+	 *Define a data de criacao do desenho
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
   public void setDataCriacao(String dataCriacao) {
     this.dataCriacao = dataCriacao;
   }
 
+  /**
+	 *Define a data de atualizacao do desenho
+	 * 
+	 * @author    Leonardo
+	 * @author    Rodrigo
+	 * @author    Pedro
+	 */
   public void setDataUltimaAtualizacao(String dataUltimaAtualizacao) {
     this.dataUltimaAtualizacao = dataUltimaAtualizacao;
   }
