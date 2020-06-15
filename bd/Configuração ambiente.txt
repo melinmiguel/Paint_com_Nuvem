@@ -1,0 +1,7 @@
+Pelo Geany:
+Construir -> Definir Comando de Construção
+Compilar: javac "-classpath" ".;sqljdbc42.jar" "%f"
+Executar: java "-classpath" ".;sqljdbc42.jar" "%e"
+
+Download sqljdbc42.jar
+https://www.microsoft.com/en-us/download/details.aspx?id=54671 
