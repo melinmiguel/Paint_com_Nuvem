@@ -1055,7 +1055,8 @@ public class JanelaCliente extends JFrame {
       figuras.clear();
       pnlDesenho.repaint();
       pnlDesenho.setSize(pnlDesenho.getSize());
-      Desenho desenho = new Desenho("nome", "hoje", "null", figuras.toString());
+      String nome = JOptionPane.showInputDialog("Nome do desenho");
+      Desenho desenho = new Desenho(nome, "hoje", "null", figuras.toString());
 
       try {
         servidor.receba(new PedidoSalvamento());
