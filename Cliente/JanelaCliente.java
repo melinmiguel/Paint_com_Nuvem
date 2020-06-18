@@ -862,43 +862,14 @@ public class JanelaCliente extends JFrame {
       JPanel panel = new JPanel();
       panel.setBackground(Color.GRAY);
 
-      // for (int i = 0; i < desenhos.getQtd(); i++) {
-      //   Desenho desenho = desenhos.getDesenho(i);
+      for (int i = 0; i < desenhos.getQtd(); i++) {
+        Desenho desenho = desenhos.getDesenho(i);
 
-      //   JLabel nome = new JLabel("    " + desenho.getNome() + "    ");
-      //   JButton button = new JButton("Abrir");
-      //   button.addActionListener(new ActionListener() {
-      //     public void actionPerformed(ActionEvent e) {
-      //       String string = "[elipse:422:89:975:546:0:0:0, quadrado:500:212:598:276:255:51:51, retangulo:731:202:892:286:255:51:51, circulo:585:359:774:385:0:204:153].fga";
-      //       desenharNaTela(string);
-      //     }
-      //   });
-
-      //   JPanel panelDesenho = new JPanel();
-      //   panelDesenho.setLayout(new GridLayout(2, 1));
-      //   panelDesenho.add(nome);
-      //   panelDesenho.add(button);
-
-      //   panel.add(panelDesenho);
-      // }
-
-      for (int i = 0; i < 4; i++) {
-        JLabel nome = new JLabel("   desenho - " + i + "    ");
+        JLabel nome = new JLabel("    " + desenho.getNome() + "    ");
         JButton button = new JButton("Abrir");
-        int cont = i;
         button.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            String string = "";
-            if(cont== 0)
-              string = "[elipse:422:89:975:546:0:0:0, quadrado:500:212:598:276:255:51:51, retangulo:731:202:892:286:255:51:51, circulo:585:359:774:385:0:204:153].fga";
-            if (cont == 1)
-              string = "[quadrado:358:44:732:284:0:255:0, circulo:359:206:666:196:255:255:51].fga";
-            if (cont == 2)
-              string = "[circulo:475:64:772:312:255:0:51, elipse:527:108:636:310:0:204:255, elipse:647:110:703:302:0:204:255].fga";
-            if (cont == 3)
-              string = "[quadrado:386:54:1115:133:153:0:153, texto:TEXTO GIGANTE:426:211:426:211:51:0:51].fga";
-            
-            desenharNaTela(string);
+            desenharNaTela(desenho.toString());
           }
         });
 
@@ -1088,7 +1059,7 @@ public class JanelaCliente extends JFrame {
 
       try {
         servidor.receba(new PedidoSalvamento());
-        // servidor.receba(new PedidoSalvamento(190,desenho));
+        servidor.receba(new PedidoSalvamento(190,desenho));
         System.out.println("salvou o desenho");
         statusBar1.setText("Mensagem: Desenho salvo");
       } catch (Exception e1) {
