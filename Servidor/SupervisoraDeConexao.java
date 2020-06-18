@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import bd.daos.Desenhos;
+
 public class SupervisoraDeConexao extends Thread {
     private double valor = 0;
     private Parceiro usuario;
@@ -9,13 +11,13 @@ public class SupervisoraDeConexao extends Thread {
     private ArrayList<Parceiro> usuarios;
 
     /**
-	// * Monitora o status da conexão.
-	// * 
-  //  * @param conexao   conexão solicitada
-  //   * @param usuarios  usuários conectados
-	// * @author     Leonardo
-	// * @author     Rodrigo
-//	 * @author     Pedro
+	 * Monitora o status da conexão.
+	 * 
+     * @param conexao   conexão solicitada
+     * @param usuarios  usuários conectados
+	 * @author     Leonardo
+	 * @author     Rodrigo
+	 * @author     Pedro
 	 */
     public SupervisoraDeConexao(Socket conexao, ArrayList<Parceiro> usuarios) throws Exception {
         if (conexao == null)
@@ -29,12 +31,12 @@ public class SupervisoraDeConexao extends Thread {
     }
 
 /**
-//	 * Inicializa o transmissor
-//	 * 
-//	 * @author     Leonardo
+	 * Inicializa o transmissor
+	 * 
+	 * @author     Leonardo
 	 * @author     Rodrigo
-//	 * @author     Pedro
-//	 */
+	 * @author     Pedro
+	 */
     public void run() {
 
         ObjectOutputStream transmissor;
@@ -74,11 +76,12 @@ public class SupervisoraDeConexao extends Thread {
 
                 else if (comunicado instanceof PedidoSalvamento) {
                     PedidoSalvamento pedidoSalvamento = (PedidoSalvamento) comunicado;
-                    //db.Salvardesenho(pedidoSalvamento.getIdCliente(),pedidoSalvamento.getDesenho());
+                    Desenhos.incluir(pedidoSalvamento.getDesenho(), "192.168.15.120");
+                    
                     System.out.println("Salvou o desenho!");
                     
                 } else if (comunicado instanceof PedidoDesenhos) {
-                   // this.usuario.receba(new Desenhos());
+                    // this.usuario.receba(new Desenhos());
                     System.out.println("Retornou os desenhos para clinte!");
                 } else if (comunicado instanceof PedidoParaSair) {
                     synchronized (this.usuarios) {
@@ -97,5 +100,12 @@ public class SupervisoraDeConexao extends Thread {
 
             return;
         }
+        
     }
+
+
+    
 }
+
+
+

@@ -1,3 +1,5 @@
+import bd.daos.Desenhos;
+import bd.dbos.Desenho;
 public class Resultado extends Comunicado
 {
     private double valorResultante;

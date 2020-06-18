@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.Semaphore;
+import bd.daos.Desenhos;
+import bd.dbos.Desenho;
 
 public class Parceiro
 {

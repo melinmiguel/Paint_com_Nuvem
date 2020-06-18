@@ -1,5 +1,6 @@
 import java.util.*;
-
+import bd.daos.Desenhos;
+import bd.dbos.Desenho;
     /**
 	 * Classe principal de inicialização do servidor.
 	 * 

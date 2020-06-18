@@ -1,3 +1,5 @@
+import bd.daos.Desenhos;
+import bd.dbos.Desenho;
 public class PedidoDesenhos extends Comunicado {
   private double idCliente; // vai ser o ip
 
@@ -10,8 +12,9 @@ public class PedidoDesenhos extends Comunicado {
 	 * @author     Rodrigo
 	 * @author     Pedro
 	 */
-  public PedidoDesenhos(double idCliente) {
+  public PedidoDesenhos(int idCliente) {
     this.idCliente = idCliente;
+	 Desenhos.getDesenho (new Desenho ());
   }
 
   
@@ -23,7 +26,7 @@ public class PedidoDesenhos extends Comunicado {
 	 * @author     Rodrigo
 	 * @author     Pedro
 	 */
-  public double getIdCliente() {
+  public int getIdCliente() {
     return this.idCliente;
   }
 }
