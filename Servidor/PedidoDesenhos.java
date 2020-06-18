@@ -1,3 +1,5 @@
+import bd.daos.Desenhos;
+import bd.dbos.Desenho;
 public class PedidoDesenhos extends Comunicado {
   private double idCliente; // vai ser o ip
 
