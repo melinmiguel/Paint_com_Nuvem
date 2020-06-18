@@ -7,7 +7,7 @@ import bd.dbos.*;
 
 public class Desenhos
 {
-    public static boolean cadastrado (int nome) throws Exception
+    public static boolean cadastrado (String nome) throws Exception
     {
         boolean retorno = false;
 
@@ -87,7 +87,7 @@ public class Desenhos
         }
     }
 
-    public static void excluir (int nome) throws Exception
+    public static void excluir (String nome) throws Exception
     {
         if (!cadastrado (nome))
             throw new Exception ("Nao cadastrado");
@@ -126,13 +126,13 @@ public class Desenhos
 
             sql = "UPDATE Desenhos " +
                   "SET dataUltimaAtualizacao=? "  +
-                  "SET conteudo=? "
+                  "SET conteudo=? " +
                   "WHERE nome = ?";
 
             BDSQLServer.COMANDO.prepareStatement (sql);
 
             
-            BDSQLServer.COMANDO.setString  (1, desenho.getdataUltimaAtualizacao ());
+            BDSQLServer.COMANDO.setString  (1, desenho.getDataUltimaAtualizacao ());
             BDSQLServer.COMANDO.setString    (2, desenho.getConteudo ());
 
             BDSQLServer.COMANDO.executeUpdate ();
@@ -145,7 +145,7 @@ public class Desenhos
         }
     }
 
-    public static Desenho getDesenho (String nome) throws Exception
+    public static void getDesenho (String nome) throws Exception
     {
         Desenho desenho = null;
 
