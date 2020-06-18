@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import bd.daos.Desenhos;
+import bd.dbos.Desenho;
 
 public class SupervisoraDeConexao extends Thread {
     private double valor = 0;
@@ -9,10 +11,10 @@ public class SupervisoraDeConexao extends Thread {
     private ArrayList<Parceiro> usuarios;
 
     /**
-	 * Monitora o status da conexão.
+	 * Monitora o status da conexÃ£o.
 	 * 
-     * @param conexao   conexão solicitada
-     * @param usuarios  usuários conectados
+     * @param conexao   conexÃ£o solicitada
+     * @param usuarios  usuÃ¡rios conectados
 	 * @author     Leonardo
 	 * @author     Rodrigo
 	 * @author     Pedro
@@ -74,11 +76,12 @@ public class SupervisoraDeConexao extends Thread {
 
                 else if (comunicado instanceof PedidoSalvamento) {
                     PedidoSalvamento pedidoSalvamento = (PedidoSalvamento) comunicado;
+                    Desenhos desenhos = new Desenhos();
+                    Desenhos.incluir(PedidoSalvamento.getDesenho());
                     //db.Salvardesenho(pedidoSalvamento.getIdCliente(),pedidoSalvamento.getDesenho());
-                    System.out.println("Salvou o desenho!");
-                    
+                    System.out.println("Salvou o desenho!");  System.out.println("Salvou o desenho!");
                 } else if (comunicado instanceof PedidoDesenhos) {
-                    this.usuario.receba(new Desenhos());
+               //     this.usuario.receba(new Desenhos());
                     System.out.println("Retornou os desenhos para clinte!");
                 } else if (comunicado instanceof PedidoParaSair) {
                     synchronized (this.usuarios) {
