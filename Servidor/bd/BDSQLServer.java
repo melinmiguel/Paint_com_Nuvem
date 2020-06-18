@@ -16,13 +16,13 @@ public class BDSQLServer
             comando =
             new MeuPreparedStatement (
             "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-            "jdbc:sqlserver://projetoc.database.windows.net:3306;databasename=projetoc",
+            "jdbc:sqlserver://projetoc.database.windows.net:1433;databasename=projetoc",
             "admpedro", "adm123!@#");
         }
         catch (Exception erro)
         {
             System.err.println ("Problemas de conexao com o BD");
-            System.exit(0); 
+            System.exit(0); // aborta o programa
         }
         
         COMANDO = comando;
